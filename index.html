@@ -3,9 +3,220 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mussa M Thomas - ML Engineer Portfolio</title>
+  <title>Mussa M Thomas | Data Scientist &amp; AI Engineer Portfolio</title>
+  <meta name="description" content="Mussa M. Thomas is a Data Scientist and Machine Learning Engineer building practical projects in analytics, artificial intelligence, education technology, and digital innovation.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    #projects {
+      --project-ink: #f4f7ff;
+      --project-muted: #a6b2ce;
+      --project-border: rgba(160, 180, 225, 0.16);
+      color: var(--project-ink);
+      background:
+        radial-gradient(ellipse at 12% 8%, rgba(45, 83, 190, 0.2), transparent 38rem),
+        radial-gradient(ellipse at 88% 72%, rgba(105, 54, 190, 0.15), transparent 36rem),
+        #080d1d;
+    }
+
+    #projects .project-card {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--project-border);
+      border-radius: 1.15rem;
+      background: linear-gradient(155deg, rgba(21, 31, 59, 0.96), rgba(13, 19, 39, 0.98));
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
+      transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+    }
+
+    #projects .project-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(91, 161, 255, 0.55);
+      box-shadow: 0 24px 55px rgba(0, 0, 0, 0.3), 0 0 28px rgba(45, 112, 255, 0.1);
+    }
+
+    #projects .project-card--initiative {
+      border-color: rgba(148, 108, 255, 0.34);
+      background: linear-gradient(155deg, rgba(30, 29, 68, 0.98), rgba(14, 20, 43, 0.98));
+    }
+
+    #projects .project-visual {
+      position: relative;
+      display: grid;
+      aspect-ratio: 16 / 9;
+      place-items: center;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(160, 180, 225, 0.12);
+      background:
+        radial-gradient(ellipse at 50% 100%, rgba(56, 119, 255, 0.2), transparent 58%),
+        linear-gradient(135deg, #111d3e, #11152f 62%, #171331);
+    }
+
+    #projects .project-visual::before,
+    #projects .project-visual::after {
+      position: absolute;
+      width: 12rem;
+      height: 12rem;
+      border: 1px solid rgba(126, 169, 255, 0.1);
+      border-radius: 50%;
+      content: "";
+    }
+
+    #projects .project-visual::after {
+      width: 17rem;
+      height: 17rem;
+      border-color: rgba(126, 169, 255, 0.06);
+    }
+
+    #projects .project-visual-art {
+      z-index: 1;
+      width: 74%;
+      max-width: 19rem;
+      height: 76%;
+      transition: transform 280ms ease;
+    }
+
+    #projects .project-card:hover .project-visual-art {
+      transform: scale(1.045);
+    }
+
+    #projects .project-card-body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 1.4rem;
+    }
+
+    #projects .project-category,
+    #projects .project-status {
+      color: #9ebeff;
+      font-size: 0.72rem;
+      font-weight: 650;
+      letter-spacing: 0.09em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+
+    #projects .project-status {
+      flex-shrink: 0;
+      border: 1px solid rgba(128, 165, 255, 0.22);
+      border-radius: 999px;
+      padding: 0.3rem 0.6rem;
+      color: #c4d5ff;
+      font-size: 0.65rem;
+      letter-spacing: 0.04em;
+      text-transform: none;
+    }
+
+    #projects .project-title {
+      color: #f5f7ff;
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.25;
+    }
+
+    #projects .project-description {
+      color: var(--project-muted);
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+
+    #projects .project-details {
+      margin-top: 0.25rem;
+      border-top: 1px solid rgba(160, 180, 225, 0.13);
+      color: #c3cde2;
+    }
+
+    #projects .project-details summary {
+      width: fit-content;
+      cursor: pointer;
+      padding: 0.8rem 0;
+      color: #c4d5ff;
+      font-size: 0.84rem;
+      font-weight: 600;
+      transition: color 180ms ease;
+    }
+
+    #projects .project-details summary:hover {
+      color: #fff;
+    }
+
+    #projects .project-details summary:focus-visible,
+    #projects a:focus-visible {
+      border-radius: 0.25rem;
+      outline: 3px solid #78caff;
+      outline-offset: 4px;
+    }
+
+    #projects .project-detail-label {
+      margin: 0.6rem 0 0.25rem;
+      color: #edf2ff;
+      font-size: 0.82rem;
+      font-weight: 650;
+    }
+
+    #projects .project-detail-copy,
+    #projects .project-capabilities {
+      color: var(--project-muted);
+      font-size: 0.84rem;
+      line-height: 1.65;
+    }
+
+    #projects .project-capabilities {
+      display: grid;
+      gap: 0.25rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding: 0;
+      list-style: none;
+    }
+
+    #projects .project-capabilities li::before {
+      margin-right: 0.45rem;
+      color: #72d5f4;
+      content: "•";
+    }
+
+    #projects .project-cta {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 0.55rem;
+      margin-top: auto;
+      padding-top: 1rem;
+      color: #b9d2ff;
+      font-size: 0.92rem;
+      font-weight: 650;
+      text-decoration: none;
+      transition: color 180ms ease, gap 180ms ease;
+    }
+
+    #projects .project-cta:hover {
+      gap: 0.8rem;
+      color: #fff;
+    }
+
+    @media (max-width: 639px) {
+      #projects .project-card-body {
+        padding: 1.2rem;
+      }
+
+      #projects .project-capabilities {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #projects *,
+      #projects *::before,
+      #projects *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 <body class="bg-gray-50 font-sans">
   <!-- Header -->
@@ -72,49 +283,16 @@
   </section>
 
   <!-- Projects Section -->
-  <section class="py-12 bg-white">
+  <section id="projects" class="py-16 md:py-20" aria-labelledby="projects-heading">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Projects</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        <!-- MUST AI Assistant Project -->
-        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
-          <h3 class="text-2xl font-semibold text-gray-800 mb-2">MUST AI Assistant</h3>
-          <p class="text-gray-600 mb-4">
-            Developed an intelligent AI assistant at Mbeya University of Science and Technology. The assistant uses natural language processing and machine learning to automate tasks and provide insightful responses.
-          </p>
-          <p class="text-gray-600 mb-2"><strong>Technologies:</strong> Python, TensorFlow, NLTK, FAISS, Streamlit</p>
-          <p class="text-gray-600 mb-4"><strong>Outcomes:</strong> Enhanced task efficiency by 30% through automated query handling.</p>
-          <a href="https://github.com/mussathomas/MUST_AI" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
-        </div><!-- AI Dellivery Intelligent System Project -->
-        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
-          <h3 class="text-2xl font-semibold text-gray-800 mb-2">AI Intelligent System</h3>
-          <p class="text-gray-600 mb-4">
-
-           <p class="text-gray-600 mb-4"><strong>Statement:</strong>
-           Food delivery services struggle with inaccurate delivery time estimates, leading to customer dissatisfaction, inefficient resource allocation, and poor operational planning. Customers need reliable delivery windows, while businesses need to optimize courier assignments and manage customer expectations effectively.
-          </p>
-
-           <p class="text-gray-600 mb-4"><strong>solutions:</strong>
-          Solution:
-           Developed a machine learning system that predicts delivery times with high accuracy by analyzing historical delivery patterns, courier performance, and contextual factors. The model processes over 467,000 delivery records to learn patterns and make intelligent predictions.
-          <p class="text-gray-600 mb-2"><strong>Technologies:</strong> Python (Pandas, NumPy, Scikit-learn, XGBoost) Streamlit</p>
-          <p class="text-gray-600 mb-4"><strong>Outcomes:</strong> Provides accurate delivery time estimates for customers
-           Helps optimize courier assignments and route planning,Identifies problematic deliveries for investigation,Improves operational efficiency and customer satisfaction.
-
-.</p>
-          <a href="https://github.com/mussathomas/MUST_AI" target="_blank" class="text-blue-600 hover:underline">View on GitHub</a>
-        </div>
-        <!-- Placeholder for Additional Project -->
-        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
-          <h3 class="text-2xl font-semibold text-gray-800 mb-2">Another Project</h3>
-          <p class="text-gray-600 mb-4">
-            Add details of another project here to showcase more of your work.
-          </p>
-          <p class="text-gray-600 mb-2"><strong>Technologies:</strong> TBD</p>
-          <p class="text-gray-600 mb-4"><strong>Outcomes:</strong> TBD</p>
-          <a href="#" target="_blank" class="text-blue-600 hover:underline">View Project</a>
-        </div>
+      <div class="mx-auto mb-10 max-w-3xl text-center md:mb-12">
+        <p class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">Data · Intelligence · Impact</p>
+        <h2 id="projects-heading" class="mb-4 text-3xl font-bold tracking-tight text-white md:text-4xl">Featured Projects</h2>
+        <p class="text-base leading-7 text-slate-300 md:text-lg">
+          Selected projects where data, artificial intelligence, and digital innovation are applied to solve practical problems.
+        </p>
       </div>
+      <div id="project-grid" class="mx-auto grid max-w-6xl grid-cols-1 items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3" aria-live="polite"></div>
     </div>
   </section>
 
@@ -199,6 +377,231 @@
 
   <!-- JavaScript for Smooth Scrolling -->
   <script>
+    const projects = [
+      {
+        name: "AnalyticsX",
+        category: "Data Analytics & Business Intelligence",
+        description: "AnalyticsX is a data analytics platform designed to transform raw data into meaningful insights through data exploration, analysis, visualization, and interactive reporting.",
+        overview: "AnalyticsX demonstrates the practical use of data analytics to transform raw datasets into meaningful information. The platform focuses on data exploration, analytical interpretation, visualization, and presenting insights in a way that can support better data-driven decision-making.",
+        purpose: "To make data analysis and visualization more accessible while demonstrating practical approaches to transforming datasets into useful insights.",
+        capabilities: [
+          "Data exploration",
+          "Data analysis",
+          "Interactive visualization",
+          "Analytical reporting",
+          "Pattern and trend identification",
+          "Data-driven decision support"
+        ],
+        url: "https://analyticsx-htqtsm7us-mussas-projects-266d9000.vercel.app/",
+        cta: "Explore AnalyticsX",
+        visual: "analytics",
+        visualAlt: "Illustrative analytics dashboard with a trend line, chart bars, and insight panels."
+      },
+      {
+        name: "ElimuDira School Management Platform",
+        category: "Education Technology / School Management",
+        description: "ElimuDira is a modern school management platform designed to bring essential academic and administrative school operations into one centralized digital system.",
+        overview: "ElimuDira is a multi-school management platform being developed to help schools manage important academic and administrative activities from a centralized system. The platform is designed to support student management, attendance, academic progress, examinations and results, grading, financial management, reporting, user roles, and other school administration workflows.",
+        purpose: "To reduce fragmented school processes, improve access to information, and support more efficient and data-driven school management.",
+        capabilities: [
+          "Multi-school management",
+          "Student management",
+          "Staff management",
+          "Attendance management",
+          "Academic progress tracking",
+          "Examination and results management",
+          "Grading and report cards",
+          "School finance management",
+          "Role-based administration",
+          "Reports and analytics",
+          "Digital communication workflows"
+        ],
+        status: "In Development",
+        statusNote: "Capabilities are being developed and may not all be available in the current platform.",
+        url: "http://elimu-dira-platiform.vercel.app/",
+        cta: "Explore ElimuDira",
+        visual: "education",
+        visualAlt: "Illustrative school administration dashboard with student records and an academic progress chart."
+      },
+      {
+        name: "MUST AI",
+        category: "Artificial Intelligence / Knowledge Assistant",
+        description: "MUST AI is an AI-powered knowledge assistant designed to make information about Mbeya University of Science and Technology easier to access through a conversational experience.",
+        overview: "MUST AI is an AI-focused knowledge assistant designed to help students, staff, and visitors interact with university information through a conversational interface. The project focuses on making institutional knowledge and university documents easier to discover and understand.",
+        purpose: "To improve access to university information by providing a convenient conversational interface for interacting with institutional knowledge.",
+        capabilities: [
+          "AI-powered question answering",
+          "University information access",
+          "Knowledge retrieval",
+          "Conversational interaction",
+          "Document-based information access",
+          "Student and staff information support",
+          "English and Swahili interaction, where supported"
+        ],
+        status: "Project",
+        statusNote: "Capabilities describe the project's focus and may vary by implementation stage.",
+        url: "https://github.com/mussathomas/MUST_AI",
+        cta: "Explore MUST AI",
+        visual: "assistant",
+        visualAlt: "Illustrative university knowledge assistant conversation with question and answer cards."
+      },
+      {
+        name: "ThinkLab Solutions",
+        category: "Data Science / AI / Digital Innovation",
+        description: "ThinkLab Solutions is a data-driven technology initiative focused on Data Science, Artificial Intelligence, analytics, research, training, and practical digital solutions.",
+        overview: "ThinkLab Solutions brings together data science, artificial intelligence, analytics, research, and digital innovation to develop practical solutions for real-world problems. The platform also serves as a hub for showcasing projects, services, research-oriented work, and opportunities for people interested in joining the ThinkLab community.",
+        purpose: "To transform data and emerging technologies into practical solutions while creating opportunities for learning, collaboration, research, and innovation.",
+        capabilities: [
+          "Data Science",
+          "Data Analytics",
+          "Artificial Intelligence",
+          "Machine Learning",
+          "Business Intelligence",
+          "Research and statistical consulting",
+          "Digital solution development",
+          "Data science training",
+          "AI-powered solutions",
+          "Community and collaboration"
+        ],
+        status: "Active",
+        initiative: true,
+        url: "https://thinklabsolutions.vercel.app/",
+        cta: "Visit ThinkLab Solutions",
+        visual: "thinklab",
+        visualAlt: "Illustrative innovation network connecting data, research, and digital solutions."
+      }
+    ];
+
+    const projectVisuals = {
+      analytics: `
+        <svg class="project-visual-art" viewBox="0 0 360 190" fill="none" aria-hidden="true">
+          <rect x="20" y="16" width="320" height="158" rx="14" fill="#111D3D" stroke="#526B9B" stroke-opacity=".55"/>
+          <rect x="38" y="34" width="72" height="8" rx="4" fill="#B9CCF7" fill-opacity=".8"/>
+          <rect x="38" y="51" width="44" height="5" rx="2.5" fill="#7185B1" fill-opacity=".7"/>
+          <rect x="255" y="32" width="64" height="18" rx="9" fill="#1A3765"/>
+          <rect x="38" y="70" width="82" height="36" rx="7" fill="#17294D" stroke="#3D5684"/>
+          <rect x="130" y="70" width="82" height="36" rx="7" fill="#17294D" stroke="#3D5684"/>
+          <rect x="222" y="70" width="97" height="36" rx="7" fill="#17294D" stroke="#3D5684"/>
+          <path d="M49 94L62 87L75 91L89 79L105 83" stroke="#48D6EF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="49" y="98" width="12" height="3" rx="1.5" fill="#7387B3"/>
+          <rect x="140" y="89" width="9" height="9" rx="2" fill="#5B9BFF"/>
+          <rect x="154" y="81" width="9" height="17" rx="2" fill="#7D78FF"/>
+          <rect x="168" y="75" width="9" height="23" rx="2" fill="#56D1E9"/>
+          <path d="M231 94L246 88L260 90L275 78L291 82L308 70" stroke="#A889FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M38 125H318" stroke="#39496A"/>
+          <path d="M48 153V137M76 153V130M104 153V142M132 153V126M160 153V134M188 153V121M216 153V138M244 153V128M272 153V134M300 153V119" stroke="#538EFF" stroke-opacity=".8" stroke-width="8" stroke-linecap="round"/>
+        </svg>`,
+      education: `
+        <svg class="project-visual-art" viewBox="0 0 360 190" fill="none" aria-hidden="true">
+          <rect x="22" y="14" width="316" height="162" rx="14" fill="#111D3D" stroke="#526B9B" stroke-opacity=".55"/>
+          <rect x="22" y="14" width="70" height="162" rx="14" fill="#16274B"/>
+          <path d="M22 28C22 20.268 28.268 14 36 14H78C85.732 14 92 20.268 92 28V162C92 169.732 85.732 176 78 176H36C28.268 176 22 169.732 22 162V28Z" fill="#16274B"/>
+          <circle cx="57" cy="42" r="13" fill="#5B9BFF" fill-opacity=".3"/>
+          <path d="M49 43L57 36L65 43V50H49V43Z" stroke="#A9CBFF" stroke-width="2"/>
+          <rect x="42" y="67" width="30" height="5" rx="2.5" fill="#89A5DB"/>
+          <rect x="42" y="83" width="25" height="5" rx="2.5" fill="#526991"/>
+          <rect x="42" y="99" width="30" height="5" rx="2.5" fill="#526991"/>
+          <rect x="42" y="115" width="22" height="5" rx="2.5" fill="#526991"/>
+          <rect x="108" y="31" width="100" height="8" rx="4" fill="#B9CCF7" fill-opacity=".8"/>
+          <rect x="108" y="47" width="54" height="5" rx="2.5" fill="#7185B1"/>
+          <rect x="108" y="66" width="99" height="42" rx="8" fill="#17294D" stroke="#3D5684"/>
+          <circle cx="128" cy="87" r="11" fill="#38BDD5" fill-opacity=".28"/>
+          <path d="M122 88L127 93L135 82" stroke="#65E3E5" stroke-width="2.5" stroke-linecap="round"/>
+          <rect x="145" y="79" width="48" height="5" rx="2.5" fill="#A7BCE5"/>
+          <rect x="145" y="90" width="37" height="4" rx="2" fill="#61769F"/>
+          <rect x="220" y="66" width="99" height="42" rx="8" fill="#17294D" stroke="#3D5684"/>
+          <path d="M235 96L246 88L257 91L270 79L284 84L303 72" stroke="#7B9CFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="108" y="119" width="211" height="41" rx="8" fill="#17294D" stroke="#3D5684"/>
+          <circle cx="127" cy="139" r="8" fill="#A889FF" fill-opacity=".55"/>
+          <rect x="143" y="132" width="87" height="5" rx="2.5" fill="#A7BCE5"/>
+          <rect x="143" y="143" width="142" height="4" rx="2" fill="#536A95"/>
+        </svg>`,
+      assistant: `
+        <svg class="project-visual-art" viewBox="0 0 360 190" fill="none" aria-hidden="true">
+          <rect x="38" y="12" width="284" height="166" rx="16" fill="#111D3D" stroke="#526B9B" stroke-opacity=".55"/>
+          <path d="M38 29C38 19.611 45.611 12 55 12H305C314.389 12 322 19.611 322 29V48H38V29Z" fill="#182849"/>
+          <circle cx="58" cy="30" r="4" fill="#69D9EE"/>
+          <rect x="71" y="27" width="85" height="6" rx="3" fill="#9EB5E5"/>
+          <circle cx="300" cy="30" r="4" fill="#8D79F5"/>
+          <rect x="58" y="63" width="174" height="33" rx="11" fill="#1A315A"/>
+          <circle cx="75" cy="79" r="7" fill="#5B9BFF"/>
+          <rect x="90" y="74" width="118" height="5" rx="2.5" fill="#C4D5FA"/>
+          <rect x="90" y="83" width="91" height="4" rx="2" fill="#8196C0"/>
+          <path d="M215 96L224 96L224 87" stroke="#1A315A" stroke-width="7" stroke-linecap="round"/>
+          <rect x="122" y="107" width="178" height="39" rx="11" fill="#24325F" stroke="#5853A1" stroke-opacity=".55"/>
+          <rect x="138" y="117" width="130" height="5" rx="2.5" fill="#D3CBFF"/>
+          <rect x="138" y="128" width="146" height="4" rx="2" fill="#9B9ACB"/>
+          <path d="M132 146L140 146L140 138" stroke="#24325F" stroke-width="7" stroke-linecap="round"/>
+          <rect x="58" y="153" width="244" height="13" rx="6.5" fill="#172849" stroke="#3D5684"/>
+          <circle cx="72" cy="159.5" r="3" fill="#63D4E8"/>
+          <rect x="83" y="157" width="127" height="5" rx="2.5" fill="#63769D"/>
+          <circle cx="284" cy="159.5" r="4" fill="#7777FF"/>
+        </svg>`,
+      thinklab: `
+        <svg class="project-visual-art" viewBox="0 0 360 190" fill="none" aria-hidden="true">
+          <circle cx="180" cy="95" r="69" stroke="#53689A" stroke-opacity=".4" stroke-dasharray="4 7"/>
+          <circle cx="180" cy="95" r="47" stroke="#6674B8" stroke-opacity=".38"/>
+          <path d="M180 95L119 62M180 95L244 57M180 95L249 132M180 95L117 137" stroke="#5B86DB" stroke-opacity=".55" stroke-width="2"/>
+          <circle cx="180" cy="95" r="25" fill="#393A88" stroke="#9A8AFF"/>
+          <path d="M170 99C170 92.925 174.925 88 181 88H190V98C190 104.075 185.075 109 179 109H170V99Z" fill="#7F8DFF"/>
+          <path d="M180 88V80C180 74.477 184.477 70 190 70" stroke="#A9AEFF" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="115" cy="60" r="15" fill="#153B65" stroke="#5DD5E8" stroke-width="2"/>
+          <path d="M109 62L115 55L121 62V68H109V62Z" stroke="#93F0F1" stroke-width="1.6"/>
+          <circle cx="247" cy="55" r="15" fill="#272D69" stroke="#8D79F5" stroke-width="2"/>
+          <path d="M241 60L247 49L253 60M243 56H251" stroke="#D4C5FF" stroke-width="1.7" stroke-linecap="round"/>
+          <circle cx="251" cy="135" r="15" fill="#173960" stroke="#5B9BFF" stroke-width="2"/>
+          <path d="M245 139V133L251 129L257 133V139M249 139V135H253V139" stroke="#AED0FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="113" cy="140" r="15" fill="#1B3760" stroke="#65D6D9" stroke-width="2"/>
+          <path d="M107 138H119M109 134H117M111 142H115M113 146V142" stroke="#A9F0E8" stroke-width="1.7" stroke-linecap="round"/>
+          <circle cx="180" cy="24" r="3" fill="#8E82FF"/>
+          <circle cx="305" cy="95" r="3" fill="#65D6D9"/>
+          <circle cx="55" cy="96" r="3" fill="#5B9BFF"/>
+        </svg>`
+    };
+
+    const escapeHtml = value => value.replace(/[&<>"']/g, character => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    })[character]);
+
+    document.getElementById("project-grid").innerHTML = projects.map(project => `
+      <article class="project-card${project.initiative ? " project-card--initiative" : ""}">
+        <div class="project-visual" role="img" aria-label="${escapeHtml(project.visualAlt)}">
+          ${projectVisuals[project.visual]}
+        </div>
+        <div class="project-card-body">
+          <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
+            <p class="project-category">${escapeHtml(project.category)}</p>
+            ${project.status ? `<span class="project-status">${escapeHtml(project.status)}</span>` : ""}
+          </div>
+          ${project.initiative ? '<p class="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-violet-200">Founder Initiative</p>' : ""}
+          <h3 class="project-title mb-3">${escapeHtml(project.name)}</h3>
+          <p class="project-description mb-4">${escapeHtml(project.description)}</p>
+          <details class="project-details mb-3">
+            <summary>Project overview &amp; focus areas</summary>
+            <div class="pb-3">
+              <h4 class="project-detail-label">Project overview</h4>
+              <p class="project-detail-copy">${escapeHtml(project.overview)}</p>
+              <h4 class="project-detail-label">Purpose</h4>
+              <p class="project-detail-copy">${escapeHtml(project.purpose)}</p>
+              <h4 class="project-detail-label">${project.name === "ElimuDira School Management Platform" || project.name === "MUST AI" ? "Designed to support" : "Key capabilities"}</h4>
+              ${project.statusNote ? `<p class="project-detail-copy mb-2">${escapeHtml(project.statusNote)}</p>` : ""}
+              <ul class="project-capabilities">
+                ${project.capabilities.map(capability => `<li>${escapeHtml(capability)}</li>`).join("")}
+              </ul>
+            </div>
+          </details>
+          <a class="project-cta" href="${escapeHtml(project.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(project.cta)} (opens in a new tab)">
+            ${escapeHtml(project.cta)}
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+    `).join("");
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
